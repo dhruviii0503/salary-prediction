@@ -34,12 +34,14 @@ df = pd.DataFrame({
 })
 
 
-if st.button("Predict"):
-  for col in encoder:
-    df[col] = encoder[col].transform(df[col])
+if st.button("Predict Salary"):
+ for col in encoder:
+        df[col] = encoder[col].transform(df[col])
 
-    prediction = model.predict(df)
-    st.success(f"Predicted salary: {prediction[0]:,.2f}")
+     df = df[model.feature_names_in_]
+     df = df.astype(float)
+     prediction = model.predict(df)
+     st.success(f"Predicted Salary: ₹ {prediction[0]:,.2f}")
 
 
 
